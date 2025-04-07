@@ -52,3 +52,117 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 	<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>
 	<li><code>nums</code> is sorted in <strong>non-decreasing</strong> order.</li>
 </ul>
+
+---
+
+<h1>NOTES</h1>
+
+
+---
+
+## ✅ Java Code:
+```java
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] != nums[i]) {
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+        return i + 1;
+    }
+}
+```
+
+---
+
+## 📘 **Clean Notes – Step-by-Step Explanation**
+
+### 🔹 Step 1: Check for an empty array
+```java
+if (nums.length == 0) return 0;
+```
+- If the input array has **no elements**, there are **no unique numbers**.
+- So we return `0` right away.
+
+---
+
+### 🔹 Step 2: Initialize pointer `i`
+```java
+int i = 0;
+```
+- `i` is the **slow pointer**.
+- It tracks the **position where the next unique number should go**.
+- Starts at `0` because the first element is **always unique**.
+
+---
+
+### 🔹 Step 3: Start looping with pointer `j`
+```java
+for (int j = 1; j < nums.length; j++) {
+```
+- `j` is the **fast pointer**.
+- It goes through each element starting from the **second one** (index 1).
+
+---
+
+### 🔹 Step 4: Compare nums[j] with nums[i]
+```java
+if (nums[j] != nums[i]) {
+```
+- If the number at `j` is **not equal** to the number at `i`, it's a **new unique number**.
+
+---
+
+### 🔹 Step 5: Update unique value position
+```java
+i++;
+nums[i] = nums[j];
+```
+- Move `i` forward by 1.
+- Copy the new unique number at `j` into position `i`.
+- This **builds a unique list at the front** of the array.
+
+---
+
+### 🔹 Step 6: After the loop, return the count
+```java
+return i + 1;
+```
+- The number of unique elements is `i + 1`.
+- Why? Because `i` is index-based and starts from 0.
+
+---
+
+## 🧪 Example Walkthrough:
+
+For input: `nums = [1, 1, 2, 3, 3]`
+
+| Step | i | j | nums[i] | nums[j] | Action         | Resulting nums        |
+|------|---|---|---------|---------|----------------|------------------------|
+| Init | 0 | 1 | 1       | 1       | same → skip    | [1, 1, 2, 3, 3]        |
+| Loop | 0 | 2 | 1       | 2       | new → i++, copy| [1, 2, 2, 3, 3]        |
+| Loop | 1 | 3 | 2       | 3       | new → i++, copy| [1, 2, 3, 3, 3]        |
+| Loop | 2 | 4 | 3       | 3       | same → skip    | [1, 2, 3, 3, 3]        |
+
+Return `i + 1 = 3`
+
+So the first 3 elements in `nums` are: `[1, 2, 3]`
+
+---
+
+## ✨ Summary:
+
+| Part             | Meaning                                        |
+|------------------|------------------------------------------------|
+| `i`              | Slow pointer (tracks unique position)          |
+| `j`              | Fast pointer (scans entire array)              |
+| `if nums[j] != nums[i]` | Detects a new unique element           |
+| `nums[i] = nums[j]` | Puts that unique element in place           |
+| `return i + 1`   | Returns total number of unique elements        |
+
+---

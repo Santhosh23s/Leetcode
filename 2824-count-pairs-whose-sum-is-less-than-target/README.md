@@ -37,3 +37,70 @@ Note that (0, 3) is not counted since nums[0] + nums[3] is not strictly less tha
 	<li><code>1 &lt;= nums.length == n &lt;= 50</code></li>
 	<li><code>-50 &lt;= nums[i], target &lt;= 50</code></li>
 </ul>
+
+---
+Sure! Here's a clear and beginner-friendly explanation of the code in note format. These notes are great to include in your GitHub repo alongside the code to help others (or future you!) understand what's going on.
+
+---
+
+## ✅ Notes: Count Number of Pairs With Sum Less Than Target
+
+### 💡 Problem Statement (Simplified)
+We are given:
+- A list of integers `nums`
+- A number `target`
+
+We need to count how many **pairs of indices (i, j)** satisfy these conditions:
+1. `i < j` (i comes before j)
+2. `nums[i] + nums[j] < target`
+
+---
+
+### 🔍 Example:
+If `nums = [-1, 1, 2, 3, 1]` and `target = 2`  
+Valid pairs:
+- (-1 + 1) = 0 ✔
+- (-1 + 2) = 1 ✔
+- (-1 + 1) = 0 ✔  
+So, the answer is **3**.
+
+---
+
+### 🧠 Logic Behind the Code
+- We go through all possible pairs of numbers in the list.
+- For each pair `(i, j)` where `i < j`, we check if the sum is less than the target.
+- If yes, we increase our counter (`result`).
+
+---
+
+### 🔁 How the Code Works
+```java
+for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+        if (nums.get(i) + nums.get(j) < target) {
+            result++;
+        }
+    }
+}
+```
+
+- Outer loop picks the first number.
+- Inner loop picks the second number (always after the first).
+- We check if their sum is less than the target and count it.
+
+---
+
+### 🧮 Time & Space Complexity
+- **Time Complexity:** O(n²)  
+  Because we're checking every pair of numbers.
+- **Space Complexity:** O(1)  
+  We're not using any extra space—just a counter.
+
+---
+
+### 🧼 Code Style Tips
+- `j = i + 1` is used to make sure we only count each pair once and maintain `i < j`.
+- Using `List<Integer>` makes the code compatible with Java's List interface (like `ArrayList`).
+
+---
+

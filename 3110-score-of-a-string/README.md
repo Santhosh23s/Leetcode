@@ -34,3 +34,56 @@
 	<li><code>2 &lt;= s.length &lt;= 100</code></li>
 	<li><code>s</code> consists only of lowercase English letters.</li>
 </ul>
+
+---
+
+## 📝 Notes
+
+
+### ✅ **Java Code Notes: Calculate Score of a String**
+
+```java
+class Solution {
+    public int scoreOfString(String s) {
+        int score = 0;  // Initialize score to 0
+
+        // Loop through the string from the first character to the second-last one
+        for (int i = 0; i < s.length() - 1; i++) {
+            
+            // Get the ASCII value of current character
+            int a = (int) s.charAt(i);
+
+            // Get the ASCII value of the next character
+            int b = (int) s.charAt(i + 1);
+
+            // Add the absolute difference between the two ASCII values to the score
+            score += Math.abs(a - b);
+        }
+
+        // Return the final calculated score
+        return score;
+    }
+}
+```
+
+---
+
+### 💡 **What this code does:**
+
+- It **calculates the score of a string** based on the sum of the **absolute differences** between the ASCII values of **adjacent characters**.
+- For example, if the string is `"hello"`:
+  - ASCII values: `h=104`, `e=101`, `l=108`, `l=108`, `o=111`
+  - Differences: `|104-101| + |101-108| + |108-108| + |108-111|`
+  - Result: `3 + 7 + 0 + 3 = 13`
+
+---
+
+### 🧠 **Key Concepts Used:**
+
+- `charAt(i)` – Access individual characters in the string
+- `(int)` – Casts the character to its ASCII value
+- `Math.abs()` – Ensures the difference is always positive
+- Looping till `s.length() - 1` to safely access `i + 1`
+
+---
+

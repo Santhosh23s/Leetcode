@@ -44,3 +44,48 @@ Products table:
 +-------------+
 <strong>Explanation:</strong> Only products 1 and 3 are both low fat and recyclable.
 </pre>
+
+---
+
+# Notes📝
+
+---
+
+## ✅ 1. **SQL Notes for the Query**
+
+### 📌 **Query:**
+```sql
+SELECT product_id
+FROM Products
+WHERE low_fats = 'Y' AND recyclable = 'Y';
+```
+
+---
+
+### 🧠 **Explanation:**
+
+| Clause         | Purpose                                                 |
+|----------------|----------------------------------------------------------|
+| `SELECT`       | Chooses which column(s) to return — here, `product_id`  |
+| `FROM Products`| From the table named `Products`                         |
+| `WHERE`        | Filters rows where both conditions are true             |
+| `low_fats='Y'` | Checks if the product is low in fat                     |
+| `recyclable='Y'` | Checks if the product is recyclable                   |
+| `AND`          | Both conditions must be true                            |
+
+---
+
+### 🔍 Use Case:
+
+This query is useful when you want to **list all products that are both low fat and recyclable** — e.g., for eco-friendly and health-focused filtering in an app or report.
+
+---
+
+### ✅ Output Example:
+
+| product_id |
+|------------|
+| 1        |
+| 3        |
+
+---

@@ -37,3 +37,44 @@ For nums[4]=3 there exist three smaller numbers than it (1, 2 and 2).
 	<li><code>2 &lt;= nums.length &lt;= 500</code></li>
 	<li><code>0 &lt;= nums[i] &lt;= 100</code></li>
 </ul>
+
+---
+
+# Notes📝
+---
+
+---
+
+### ✅ **Code Explanation with Notes**
+
+```java
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        int n = nums.length;           // Get the length of the input array
+        int[] arr = new int[n];        // Create a new array to store the result
+        
+        for(int i = 0; i < n; i++) {   // Outer loop to pick each element one by one
+            int count = 0;             // Initialize a counter for each nums[i]
+            
+            for(int j = 0; j < n; j++) {      // Inner loop to compare nums[i] with every nums[j]
+                if(nums[i] > nums[j]) {       // If current number is greater than another number
+                    count += 1;               // Increase the count
+                }
+            }
+            
+            arr[i] = count;           // Store the count of smaller numbers in the result array
+        }
+        
+        return arr;                   // Return the result array
+    }
+}
+```
+
+### 📝 **Summary:**
+
+- This code uses a **brute force approach** (nested loops) to compare each number with all other numbers.
+- Time Complexity is **O(n²)** due to the nested loop.
+- For each number in `nums`, it counts how many other numbers are smaller than it.
+- The count is stored in the same index in a new result array `arr`.
+
+---

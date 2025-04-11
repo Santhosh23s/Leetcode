@@ -27,3 +27,107 @@
 <ul>
 	<li><code>1 &lt;= low &lt;= high &lt;= 10<sup>4</sup></code></li>
 </ul>
+
+
+---
+
+# Notes📝
+
+---
+
+## 📘 **Program Notes for `countSymmetricIntegers`**
+
+### ✅ **Purpose:**
+This program counts how many **symmetric integers** exist between two given numbers (`low` and `high`), inclusive.
+
+---
+
+### 🔄 **Definition: Symmetric Integer**
+An integer is symmetric if:
+- It has an **even number of digits**
+- The **sum of the first half** of its digits is equal to the **sum of the second half**
+
+---
+
+### 🔧 **Code Breakdown:**
+
+#### 🧮 `int result = 0;`
+- Initializes the result counter to store how many symmetric integers we find.
+
+---
+
+#### 🔁 `for (int i = low; i <= high; i++)`
+- Loops through every integer from `low` to `high` (inclusive)
+
+---
+
+#### 📦 `String digit = String.valueOf(i);`
+- Converts the integer `i` to a string so we can access its individual digits
+
+---
+
+#### 🔢 `int len = digit.length();`
+- Stores the number of digits in the current number
+
+---
+
+#### 🧪 `if (len % 2 == 0)`
+- Checks if the number has an **even number of digits** (only then it's a candidate for symmetry)
+
+---
+
+#### ✂️ `int half = len / 2;`
+- Divides the number into **two halves** using the digit count
+
+---
+
+#### 🔁 First `for` loop: `j = 0 to half - 1`
+```java
+for (int j = 0; j < half; j++)
+```
+- Loops over the **first half** of the digits
+- Converts each digit character to an integer using `Character.getNumericValue(...)`
+- Adds up the digits into `sum1`
+
+---
+
+#### 🔁 Second `for` loop: `k = half to len - 1`
+```java
+for (int k = half; k < len; k++)
+```
+- Loops over the **second half** of the digits
+- Adds them into `sum2` the same way
+
+---
+
+#### ⚖️ Check for symmetry:
+```java
+if (sum1 == sum2)
+```
+- If both halves have the same digit sum → it's a symmetric number
+
+---
+
+#### ➕ Update result:
+```java
+result += 1;
+```
+- Increments the counter for each symmetric number found
+
+---
+
+### 🏁 Final Step:
+```java
+return result;
+```
+- Returns the total number of symmetric integers found in the range
+
+---
+
+### 📈 Time Complexity:
+- **O(n × d)** where:
+  - `n = high - low + 1` (range of numbers)
+  - `d = number of digits` (max is 4 here)
+- Effectively behaves like **O(n)** due to small digit count
+
+---

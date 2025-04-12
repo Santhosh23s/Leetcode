@@ -58,3 +58,117 @@
 	<li><code>1 &lt;= n &lt;= 10</code></li>
 	<li><code>1 &lt;= k &lt;= 9</code></li>
 </ul>
+
+---
+# Notes
+
+---
+
+## 🧠 **What is the problem?**
+
+We are given:
+- `n`: number of digits
+- `k`: a number
+
+We need to count how many **n-digit integers** can be **rearranged into a palindrome** that is **divisible by k**.
+
+---
+
+## 🔁 Step-by-step approach in the code:
+
+---
+
+### 🔹 Step 1: Generate all valid k-palindromic numbers
+
+```java
+generatePalindromes(...)
+```
+
+This function:
+- Builds all **palindromic numbers** of length `n`
+- Checks if each is **divisible by k**
+- Saves the valid ones
+
+💡 **Palindrome Rule:** A number that reads the same forwards and backwards.  
+Examples: `121`, `202`, `12321`, etc.
+
+🛑 It avoids invalid palindromes like `01210` (leading zero not allowed).
+
+---
+
+### 🔹 Step 2: Convert each palindrome into a **digit frequency pattern**
+
+```java
+int[] freq = new int[10];
+```
+
+We count how many times each digit appears in the palindrome.
+
+Then we convert this frequency into a **unique string pattern** using characters:
+
+Example: if digit 0 appears 2 times, digit 1 appears 1 time... we create a pattern like `"cabaaa..."`  
+Why? So we can compare patterns easily and avoid recalculating duplicates.
+
+---
+
+### 🔹 Step 3: Store all unique frequency patterns
+
+```java
+Set<String> uniquePatterns = new HashSet<>();
+```
+
+If two palindromes have the **same digit pattern**, they can be made from the **same digits**, just in a different order.
+
+So we **only keep one of each unique pattern**.
+
+---
+
+### 🔹 Step 4: For each pattern, calculate how many integers can be made
+
+```java
+long permutations = totalPermutations;
+```
+
+We use **factorial math** to calculate permutations:
+- Total ways to arrange `n` digits: `n!`
+- If digits repeat, divide by their counts:  
+  E.g., `n! / (count0! * count1! * ...)`
+
+This gives **how many numbers** we can build from those digits.
+
+---
+
+### ⚠️ Step 5: Remove numbers with **leading zeros**
+
+We cannot have numbers like `012` — those are not valid.
+
+So we subtract permutations that start with `0`.  
+This is handled carefully by:
+- Fixing a non-zero digit at the first position
+- Then permuting the rest
+
+---
+
+### ✅ Step 6: Add all valid permutations together
+
+```java
+totalValidPermutations += permutations;
+```
+
+This gives the final result:  
+**How many n-digit numbers can be rearranged into a k-divisible palindrome.**
+
+---
+
+## 📌 Summary (cheat-sheet style):
+
+| Concept         | Explanation                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| Palindrome      | Reads same forward and backward                                             |
+| k-palindromic   | A palindrome divisible by `k`                                               |
+| Good integer    | An integer that can be **rearranged** into a k-palindrome                  |
+| Frequency pattern | Tracks how many times each digit appears                                  |
+| Permutations    | Use `n! / (repeated counts)!`                                               |
+| Invalid cases   | Remove permutations that start with zero                                   |
+
+---

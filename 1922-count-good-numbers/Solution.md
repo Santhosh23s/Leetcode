@@ -1,5 +1,3 @@
----
-
 ## 📝 **Java Notes: Count Good Digit Strings Using Modular Exponentiation**
 
 ### ✅ **Problem Recap:**
